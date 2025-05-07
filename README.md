@@ -1,9 +1,9 @@
-## Team Description
+# Team Description
 
 Project team: Debunking Filecoin
 
 
-## Contribution
+# Contribution
 
 
 - **Yuxing Li**  
@@ -15,5 +15,78 @@ Project team: Debunking Filecoin
 - **Benhao Lu**  
 
 
-## Overview
+# Overview
 
+## Simulation of Filecoin
+
+## Modifying the IPFS Protocol in Go
+
+We explored and modified the Go implementation of the IPFS protocol, particularly focusing on how IPFS chunks and stores files. Our goal is to better understand the design trade-offs, performance bottlenecks, and real-world behavior of IPFS's chunking. 
+
+We modified the Kubo (go-ipfs) implementation by replacing its default chunking strategy with a content-defined chunking (CDC) algorithm, specifically FastCDC, to analyze:
+- The impact of chunking method on deduplication
+- Differences in chunk boundary behavior
+- Integration feasibility of external chunkers like those from boxo/chunker
+
+We modified the Kubo codebase to plug in a custom FastCDC chunker implementation based on github.com/restic/chunker
+
+
+### Implementation Details
+
+We created a new chunker class under chunk/fastcdc.go
+
+```go
+package chunk
+
+import (
+	"io"
+	"github.com/restic/chunker"
+)
+
+// implements the Splitter interface using FastCDC.
+type FastCDC struct {
+	ch     *chunker.Chunker
+	reader io.Reader
+}
+
+func NewFastCDC(r io.Reader, avgBlkSize uint64) Splitter {
+	const (
+		MinSize = 512
+		MaxSize = 64 * 1024
+	)
+	const poly = chunker.Pol(0x3DA3358B4DC173)
+
+	ch := chunker.NewWithBoundaries(r, poly, MinSize, MaxSize)
+
+	return &FastCDC{
+		ch:     ch,
+		reader: r,
+	}
+}
+
+func (f *FastCDC) NextBytes() ([]byte, error) {
+	chunk, err := f.ch.Next(nil)
+	if err != nil {
+		return nil, err
+	}
+	return chunk.Data, nil
+}
+
+func (f *FastCDC) Reader() io.Reader {
+	return f.reader
+}
+```
+### How to Run
+
+```bash
+$ cd kubo
+$ go mod tidy       
+$ go install ./cmd/ipfs
+
+# Initialise and start a node
+$ ~/go/bin/ipfs init
+$ ~/go/bin/ipfs daemon &
+
+# test with FastCDC
+$ ~/go/bin/ipfs add --chunker=fastcdc-8192 myfile.dat
+```
