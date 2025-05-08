@@ -6,15 +6,15 @@ Project team: Debunking Filecoin
 # Contribution
 
 
-- **Yuxing Li**  
+- **Yuxing Li (yuxingl5)**  
 
-- **Yusen Wang**  
+- **Yusen Wang (yusenw2)**  
 Explored the IPFS (Kubo) source code to understand its internal chunking logic.
 Modified the core logic responsible for the chunking algorithm, extended IPFS to support an alternative CDC for later benchmarking.
 
-- **Jing Liu**  
+- **Jing Liu (jingl17)**  
 
-- **Benhao Lu**  
+- **Benhao Lu (benhaol2)**  
 
 
 # Overview
