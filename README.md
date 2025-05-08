@@ -7,7 +7,7 @@ Project team: Debunking Filecoin
 
 
 - **Yuxing Li (yuxingl5)**  
-Implemented the benchmark pipeline for IPFS chunking
+Implemented the benchmark pipeline for IPFS chunking.
 Explored and tested lotus commands in a virtual machine environment to better understand Filecoin's storage and retrieval workflows
 
 - **Yusen Wang (yusenw2)**  
