@@ -28,8 +28,6 @@ var (
 // it supports "default" (""), "size-{size}", "rabin", "rabin-{blocksize}",
 // "rabin-{min}-{avg}-{max}" and "buzhash".
 func FromString(r io.Reader, chunker string) (Splitter, error) {
-	fmt.Println("YW: chunker.FromString hit with", chunker)
-
 	switch {
 	case chunker == "" || chunker == "default":
 		return DefaultSplitter(r), nil

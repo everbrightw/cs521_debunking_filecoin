@@ -9,6 +9,8 @@ Project team: Debunking Filecoin
 - **Yuxing Li**  
 
 - **Yusen Wang**  
+Explored the IPFS (Kubo) source code to understand its internal chunking logic.
+Modified the core logic responsible for the chunking algorithm, extended IPFS to support an alternative CDC for later benchmarking.
 
 - **Jing Liu**  
 
@@ -30,8 +32,7 @@ We modified the Kubo (go-ipfs) implementation by replacing its default chunking 
 
 We modified the Kubo codebase to plug in a custom FastCDC chunker implementation based on github.com/restic/chunker
 
-
-### Implementation Details
+### Implementation Highlights
 
 We created a new chunker class under chunk/fastcdc.go
 
@@ -90,3 +91,4 @@ $ ~/go/bin/ipfs daemon &
 # test with FastCDC
 $ ~/go/bin/ipfs add --chunker=fastcdc-8192 myfile.dat
 ```
+### 
