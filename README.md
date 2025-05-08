@@ -12,7 +12,9 @@ Project team: Debunking Filecoin
 Explored the IPFS (Kubo) source code to understand its internal chunking logic.
 Modified the core logic responsible for the chunking algorithm, extended IPFS to support an alternative CDC for later benchmarking.
 
-- **Jing Liu (jingl17)**  
+- **Jing Liu (jingl17)**
+Explored the Filecoins documentations to understand PoRep & PoSt logic. Developed a simulation of the process to better understand the concept.
+Actually deployed lotus and lotus-miner node with full sync to calibration network and local network then pledged a sector of 2KiB to test the functionality.
 
 - **Benhao Lu (benhaol2)**  
 
