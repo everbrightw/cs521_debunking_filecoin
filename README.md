@@ -19,6 +19,8 @@ Explored the Filecoins documentations to understand PoRep & PoSt logic. Develope
 Actually deployed lotus and lotus-miner node with full sync to calibration network and local network then pledged a sector of 2KiB to test the functionality.
 
 - **Benhao Lu (benhaol2)**  
+Researched the lifecycle of Filecoin storage and retrieval, including the roles of clients, storage miners, and retrieval miners.
+Clarified the responsibilities and proof mechanisms. Helped bridge understanding between protocol-level concepts and practical system operation.
 
 
 # Overview
